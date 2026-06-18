@@ -3,13 +3,13 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Validador correnteValidacao = new ValidadorLogin();
-        correnteValidacao.linkWith(new ValidadorMaiusculo())
+        correnteValidacao.linkWith(new ValidadorTamanhoMinimo())
+                         .linkWith(new ValidadorMaiusculo())
+                         .linkWith(new ValidadorTamanhoMaximo())
                          .linkWith(new ValidadorMinusculo())
                          .linkWith(new ValidadorEspecial())
                          .linkWith(new ValidadorNumero())
-                         .linkWith(new ValidadorSequenciaNumeros())
-                         .linkWith(new ValidadorTamanhoMinimo())
-                         .linkWith(new ValidadorTamanhoMaximo());
+                         .linkWith(new ValidadorSequenciaNumeros());
 
         Scanner scanner = new Scanner(System.in);
         int opcao = 0;
@@ -18,8 +18,13 @@ public class Main {
             System.out.println("1. Validar Credenciais");
             System.out.println("2. Sair");
             System.out.print("Escolha uma opcao: ");
-            opcao = scanner.nextInt();
-            scanner.nextLine();
+            
+            if (scanner.hasNextInt()) {
+                opcao = scanner.nextInt();
+            } else {
+                scanner.next(); 
+                opcao = 0;
+            }
 
             switch (opcao) {
                 case 1:
