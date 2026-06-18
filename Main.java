@@ -4,8 +4,8 @@ public class Main {
     public static void main(String[] args) {
         Validador correnteValidacao = new ValidadorLogin();
         correnteValidacao.linkWith(new ValidadorTamanhoMinimo())
-                         .linkWith(new ValidadorMaiusculo())
                          .linkWith(new ValidadorTamanhoMaximo())
+                         .linkWith(new ValidadorMaiusculo())
                          .linkWith(new ValidadorMinusculo())
                          .linkWith(new ValidadorEspecial())
                          .linkWith(new ValidadorNumero())
@@ -21,6 +21,7 @@ public class Main {
             
             if (scanner.hasNextInt()) {
                 opcao = scanner.nextInt();
+                scanner.nextLine();
             } else {
                 scanner.next(); 
                 opcao = 0;
